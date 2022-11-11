@@ -34,6 +34,7 @@ Thumbs.db
 !.editorconfig
 !.phpcs.xml.dist
 !.env.example
+!.eslintrc.json
 
 # Unit test / coverage reports
 htmlcov/
