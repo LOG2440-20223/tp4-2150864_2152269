@@ -19,7 +19,7 @@ class PlaylistManager {
   }
 
   /**
-   * TODO : Implémenter la récupération d'une playlist en fonction de son id
+   * TODO DONE: Implémenter la récupération d'une playlist en fonction de son id
    * Retourne une playlist en fonction de son id
    * @param {string} id
    * @returns Retourne la playlist en fonction de son id
@@ -29,7 +29,7 @@ class PlaylistManager {
     return playlists.find((playlist) => playlist.id === id);
   }
 
-  
+
   /**
    * Ajoute une playlist dans le fichier de toutes les playlists
    * @param {Object} playlist nouvelle playlist à ajouter
@@ -51,6 +51,14 @@ class PlaylistManager {
    */
   async updatePlaylist (playlist) {
     let playlists = await this.getAllPlaylists();
+    const playlistToUpdate = await this.getPlaylistById(playlist.id);
+
+    const index = playlists.findIndex((playlist) => playlist.id === playlistToUpdate.id);
+    playlists[index] = playlist;
+    
+    await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ playlists }));
+    
+
   }
 
   /**
@@ -78,7 +86,8 @@ class PlaylistManager {
    */
   async deletePlaylist (id) {
     const allPlaylists = await this.getAllPlaylists();
-    const playlistToDelete = allPlaylists.find((playlist) => playlist.id === id);
+    // const playlistToDelete = allPlaylists.find((playlist) => playlist.id === id);
+    const playlistToDelete = await this.getPlaylistById(id);
     if (playlistToDelete) {
       const playlists = allPlaylists.filter((playlist) => playlist.id !== id);
       const playlistToSave = JSON.stringify({ playlists }, null, 2);
