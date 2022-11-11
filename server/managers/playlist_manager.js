@@ -29,6 +29,7 @@ class PlaylistManager {
     return playlists.find((playlist) => playlist.id === id);
   }
 
+  
   /**
    * Ajoute une playlist dans le fichier de toutes les playlists
    * @param {Object} playlist nouvelle playlist à ajouter
