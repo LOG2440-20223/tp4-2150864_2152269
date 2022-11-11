@@ -45,20 +45,16 @@ class PlaylistManager {
   }
 
   /**
-   * TODO : Implémenter la mise à jour de la playlist et du fichiers de toutes les playlists
+   * TODO DONE: Implémenter la mise à jour de la playlist et du fichiers de toutes les playlists
    * Modifie une playlist en fonction de son id et met à jour le fichier de toutes les playlists
    * @param {Object} playlist nouveau contenu de la playlist
    */
   async updatePlaylist (playlist) {
     let playlists = await this.getAllPlaylists();
     const playlistToUpdate = await this.getPlaylistById(playlist.id);
-
     const index = playlists.findIndex((playlist) => playlist.id === playlistToUpdate.id);
     playlists[index] = playlist;
-    
     await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ playlists }));
-    
-
   }
 
   /**
@@ -86,7 +82,7 @@ class PlaylistManager {
    */
   async deletePlaylist (id) {
     const allPlaylists = await this.getAllPlaylists();
-    // const playlistToDelete = allPlaylists.find((playlist) => playlist.id === id);
+    // const playlistToDelete = allPlaylists.find((playlist) => playlist.id === id); CODE DU PROF
     const playlistToDelete = await this.getPlaylistById(id);
     if (playlistToDelete) {
       const playlists = allPlaylists.filter((playlist) => playlist.id !== id);

@@ -23,7 +23,8 @@ class SongsManager {
    * @returns chanson correspondant à l'id
    */
   async getSongById (id) {
-    return { id: -1 };
+    const songs = await this.getAllSongs();
+    return songs.find((song) => song.id === id);
   }
 
   /**
@@ -33,7 +34,13 @@ class SongsManager {
    * @returns {boolean} le nouveau état aimé de la chanson
    */
   async updateSongLike (id) {
-    return false;
+    const songs = await this.getAllSongs();
+    const songToUpdate = await this.getSongById(id);
+    const index = songs.findIndex((song) => song.id === songToUpdate.id);
+    songs[index].liked = !songs[index].liked;
+    await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ songs }));
+    
+    return songs[index].liked;
   }
 }
 
