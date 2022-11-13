@@ -25,7 +25,7 @@ router.get("/", async (request, response) => {
  * @memberof module:routes/songs
  * @name GET /songs/:id
  */
-router.use("/:id", async (request, response) => {
+router.get("/:id", async (request, response) => {
   try{
     const id = parseInt(request.params.id);
     const songs = await songsManager.getAllSongs();
@@ -37,7 +37,6 @@ router.use("/:id", async (request, response) => {
     response.status(HTTP_STATUS.SUCCESS).json(song);
 
   }catch (error){
-
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);
   }
 });
@@ -67,13 +66,26 @@ router.get("/player/:id", async (request, response) => {
 });
 
 /**
- * TODO : implémenter la gestion de la requête et retourner le nouveau statut
+ * TODO DONE : implémenter la gestion de la requête et retourner le nouveau statut
  * Modifie l'état aimé d'une chanson en fonction de son id
  * @memberof module:routes/songs
  * @name PATCH /songs/:id/like
  */
-router.use("/:id/like", async (request, response) => {
-  response.status(HTTP_STATUS.SERVER_ERROR).json({ liked: false });
+router.patch("/:id/like", async (request, response) => {
+
+  try{
+    const id = parseInt(request.params.id);
+    const songs = await songsManager.getAllSongs();
+    if(!songs.find((song) => song.id === id)){
+      response.status(HTTP_STATUS.BAD_REQUEST).send();
+      return;
+    }
+    const isLiked = await songsManager.updateSongLike(id);
+    
+    response.status(HTTP_STATUS.SUCCESS).json({ liked: isLiked });
+  }catch(error){
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
 
 module.exports = { router, songsManager };

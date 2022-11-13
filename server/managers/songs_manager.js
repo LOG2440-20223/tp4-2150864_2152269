@@ -17,7 +17,7 @@ class SongsManager {
   }
 
   /**
-   * TODO : Implémenter la récupération d'une chanson en fonction de son id
+   * TODO DONE: Implémenter la récupération d'une chanson en fonction de son id
    * Retourne une chanson en fonction de son id
    * @param {number} id identifiant de la chanson
    * @returns chanson correspondant à l'id
@@ -28,7 +28,7 @@ class SongsManager {
   }
 
   /**
-   * TODO : Implémenter l'inversement de l'état aimé d'une chanson
+   * TODO DONE: Implémenter l'inversement de l'état aimé d'une chanson
    * Modifie l'état aimé d'une chanson par l'état inverse
    * @param {number} id identifiant de la chanson
    * @returns {boolean} le nouveau état aimé de la chanson
