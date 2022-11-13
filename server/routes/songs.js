@@ -11,13 +11,12 @@ const songsManager = new SongsManager();
  * @name GET /songs
  */
 router.get("/", async (request, response) => {
-  // try {
-  //   const songs = await songsManager.getAllSongs();
-  //   response.status(HTTP_STATUS.SUCCESS).json(songs);
-  // } catch (error) {
-  //   response.status(HTTP_STATUS.SERVER_ERROR).json(error);
-  // }
-  response.send("Hello World");
+  try {
+    const songs = await songsManager.getAllSongs();
+    response.status(HTTP_STATUS.SUCCESS).json(songs);
+  } catch (error) {
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
 
 /**
@@ -27,7 +26,20 @@ router.get("/", async (request, response) => {
  * @name GET /songs/:id
  */
 router.use("/:id", async (request, response) => {
-  response.status(HTTP_STATUS.SERVER_ERROR).json({});
+  try{
+    const id = parseInt(request.params.id);
+    const songs = await songsManager.getAllSongs();
+    if(!songs.find((song) => song.id === id)){
+      response.status(HTTP_STATUS.BAD_REQUEST).send();
+      return;
+    }
+    const song = await songsManager.getSongById(id);
+    response.status(HTTP_STATUS.SUCCESS).json(song);
+
+  }catch (error){
+
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
 
 /**

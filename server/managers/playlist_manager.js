@@ -82,8 +82,8 @@ class PlaylistManager {
    */
   async deletePlaylist (id) {
     const allPlaylists = await this.getAllPlaylists();
-    // const playlistToDelete = allPlaylists.find((playlist) => playlist.id === id); CODE DU PROF
-    const playlistToDelete = await this.getPlaylistById(id);
+    const playlistToDelete = allPlaylists.find((playlist) => playlist.id === id);
+    // const playlistToDelete = await this.getPlaylistById(id);
     if (playlistToDelete) {
       const playlists = allPlaylists.filter((playlist) => playlist.id !== id);
       const playlistToSave = JSON.stringify({ playlists }, null, 2);

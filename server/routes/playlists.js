@@ -19,16 +19,16 @@ router.get("/", async (request, response) => {
 });
 
 /**
- * TODO : retourne un playlist en fonction de son id
+ * TODO DONE: retourne un playlist en fonction de son id
  * Retourne playlist en fonction de son id
  * @memberof module:routes/playlists
  * @name GET /playlists/:id
  */
-router.use("/:id", async (request, response) => {
+router.get("/:id", async (request, response) => {
   try{
     const playlists = await playlistManager.getAllPlaylists();
     if(!playlists.find((playlist) => playlist.id === request.params.id)){
-      response.status(HTTP_STATUS.BAD_REQUEST).json({});
+      response.status(HTTP_STATUS.BAD_REQUEST).send();
       return;
     }
     const playlist = await playlistManager.getPlaylistById(request.params.id);
@@ -57,29 +57,45 @@ router.post("/", async (request, response) => {
 });
 
 /**
- * TODO : implémenter la modification d'une playlist
+ * TODO DONE: implémenter la modification d'une playlist
  * Mets à jour l'information d'une playlist en fonction de son id
  * @memberof module:routes/playlists
  * @name PUT /playlists/:id
  */
-router.use("/:id", async (request, response) => {
+router.put("/:id", async (request, response) => {
   try{
-    
-
+    if (Object.keys(request.body).length !== 5) {
+      response.status(HTTP_STATUS.BAD_REQUEST).send();
+      return;
+    }
+    await playlistManager.updatePlaylist(request.body);
+    response.status(HTTP_STATUS.SUCCESS).send();
   }catch(error){
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);
   }
-  response.status(HTTP_STATUS.SERVER_ERROR).json({});
 });
 
 /**
- * TODO : implémenter la suppression de la requête
+ * TODO DONE: implémenter la suppression de la requête
  * Supprime une playlist en fonction de son id
  * @memberof module:routes/playlists
  * @name DELETE /playlists/:id
  */
-router.use("/:id", async (request, response) => {
-  response.status(HTTP_STATUS.SERVER_ERROR).json({});
+router.delete("/:id", async (request, response) => {
+
+  try{
+    const playlists = await playlistManager.getAllPlaylists();
+    if(!playlists.find((playlist) => playlist.id === request.params.id)){
+      response.status(HTTP_STATUS.BAD_REQUEST).send();
+      return;
+    }
+    await playlistManager.deletePlaylist(request.params.id);
+    response.status(HTTP_STATUS.SUCCESS).send();
+  }
+  catch(error){
+    response.status(HTTP_STATUS.SERVER_ERROR).json(error);
+  }
 });
+
 
 module.exports = { router, playlistManager };
