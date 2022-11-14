@@ -61,7 +61,8 @@ describe("HTTPManager tests", () => {
   });
 
   it("search should send a GET request and return an object with playlist and songs ", async () => {
-    const searchResult = { playlists: [], songs: [] };
+    // const searchResult = { playlists: [], songs: [] };
+    const searchResult = {songs: [], playlists: []};
     global.fetch = jest.fn(() => Promise.resolve({ json: () => Promise.resolve({ searchResult }) }));
     const query = "test";
     const exact = false;

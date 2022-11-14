@@ -58,34 +58,33 @@ export default class HTTPManager {
   }
 
   /**
-   * TODO : implémenter la requête vers le serveur
+   * TODO DONE : implémenter la requête vers le serveur
    * Récupère et retourne toutes les chansons du serveur
    * @returns {Promise} Liste des chansons
    */
   async fetchAllSongs () {
-    // const songs = [];
-    
+    const songs = HTTPInterface.GET(this.songsBaseURL);
     return songs;
   }
 
   /**
-   * TODO : implémenter la requête vers le serveur
+   * TODO DONE : implémenter la requête vers le serveur
    * Récupère et retourne toutes les playlists du serveur
    * @returns {Promise} Liste des playlists
    */
   async fetchAllPlaylists () {
-    const playlists = [];
+    const playlists = HTTPInterface.GET(this.playlistBaseURL);
     return playlists;
   }
 
   /**
-   * TODO : implémenter la requête vers le serveur
+   * TODO DONE: implémenter la requête vers le serveur
    * Récupère et retourne une chanson du serveur en fonction de son id
    * @param {number} id identifiant de la chanson
    * @returns {Promise} une chanson
    */
   async fetchSong (id) {
-    const song = { id: -1 };
+    const song = HTTPInterface.GET(`${this.songsBaseURL}/${id}`);
     return song;
   }
 
@@ -112,7 +111,8 @@ export default class HTTPManager {
    * ou les 2 attributs sont des tableaux avec les playlists et les chansons qui correspondent à la recherche
    */
   async search (query, exact) {
-    const searchResults = { playlists: [], songs: [] };
+    const searchResults = HTTPInterface.GET(`${this.searchBaseURL}?search_query=${query}&exact=${exact}`);
+    
     return searchResults;
   }
 

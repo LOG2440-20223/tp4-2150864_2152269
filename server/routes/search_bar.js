@@ -25,8 +25,6 @@ router.get("/", async (request, response) => {
   } catch (error) {
     response.status(HTTP_STATUS.SERVER_ERROR).send(error);
   }
-  
-  console.log(request.query.search_query);
 });
 
 module.exports = { router, searchBarManager };

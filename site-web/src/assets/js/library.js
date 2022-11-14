@@ -99,9 +99,15 @@ export class Library {
    * @param {boolean} exactMatch indique s'il faut tenir compte des minuscules et majuscules
    */
   async search (searchInput, exactMatch) {
-    const searchString = searchInput.value;
+    // const searchString = searchInput.value;
+    // const playlists = await this.HTTPManager.getAllPlaylists();
+    // const songs = await this.HTTPManager.getAllSongs();
+    
+
+    
+    }
   }
-}
+
 
 window.onload = () => {
   new Library(new HTTPManager()).load();
