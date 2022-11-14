@@ -30,7 +30,7 @@ router.get("/:id", async (request, response) => {
     const id = parseInt(request.params.id);
     const songs = await songsManager.getAllSongs();
     if(!songs.find((song) => song.id === id)){
-      response.status(HTTP_STATUS.BAD_REQUEST).send();
+      response.status(HTTP_STATUS.NOT_FOUND).send();
       return;
     }
     const song = await songsManager.getSongById(id);

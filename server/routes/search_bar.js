@@ -10,7 +10,7 @@ const playlistManager = new PlaylistManager();
 const searchBarManager = new SearchBarManager(songsManager, playlistManager);
 
 /**
- * TODO : implémenter la gestion de la requête
+ * TODO DONE : implémenter la gestion de la requête
  * Retourne une liste de chansons et de playlists qui correspondent à la recherche
  * Prends les attributs à partir de la query de la requête
  * @memberof module:routes/search_bar

@@ -28,7 +28,7 @@ router.get("/:id", async (request, response) => {
   try{
     const playlists = await playlistManager.getAllPlaylists();
     if(!playlists.find((playlist) => playlist.id === request.params.id)){
-      response.status(HTTP_STATUS.BAD_REQUEST).send();
+      response.status(HTTP_STATUS.NOT_FOUND).send();
       return;
     }
     const playlist = await playlistManager.getPlaylistById(request.params.id);
