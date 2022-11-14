@@ -20,7 +20,7 @@ router.get("/", async (request, response) => {
 });
 
 /**
- * TODO : Implementer la requête
+ * TODO DONE: Implementer la requête
  * Retourne une chanson en fonction de son id
  * @memberof module:routes/songs
  * @name GET /songs/:id
@@ -75,11 +75,6 @@ router.patch("/:id/like", async (request, response) => {
 
   try{
     const id = parseInt(request.params.id);
-    // const songs = await songsManager.getAllSongs();
-    // if(!songs.find((song) => song.id === id)){
-    //   response.status(HTTP_STATUS.BAD_REQUEST).send();
-    //   return;
-    // }
     const isLiked = await songsManager.updateSongLike(id);
     response.status(HTTP_STATUS.SUCCESS).json({ liked: isLiked });
   }catch(error){
