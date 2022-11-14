@@ -75,13 +75,12 @@ router.patch("/:id/like", async (request, response) => {
 
   try{
     const id = parseInt(request.params.id);
-    const songs = await songsManager.getAllSongs();
-    if(!songs.find((song) => song.id === id)){
-      response.status(HTTP_STATUS.BAD_REQUEST).send();
-      return;
-    }
+    // const songs = await songsManager.getAllSongs();
+    // if(!songs.find((song) => song.id === id)){
+    //   response.status(HTTP_STATUS.BAD_REQUEST).send();
+    //   return;
+    // }
     const isLiked = await songsManager.updateSongLike(id);
-    
     response.status(HTTP_STATUS.SUCCESS).json({ liked: isLiked });
   }catch(error){
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);

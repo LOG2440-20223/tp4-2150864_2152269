@@ -64,12 +64,12 @@ router.post("/", async (request, response) => {
  */
 router.put("/:id", async (request, response) => {
   try{
-    if (Object.keys(request.body).length !== 5) {
+    if (!Object.keys(request.body).length) {
       response.status(HTTP_STATUS.BAD_REQUEST).send();
       return;
     }
     await playlistManager.updatePlaylist(request.body);
-    response.status(HTTP_STATUS.SUCCESS).send();
+    response.status(HTTP_STATUS.SUCCESS).json({"id" : request.params.id});
   }catch(error){
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);
   }
@@ -82,15 +82,13 @@ router.put("/:id", async (request, response) => {
  * @name DELETE /playlists/:id
  */
 router.delete("/:id", async (request, response) => {
-
   try{
-    const playlists = await playlistManager.getAllPlaylists();
-    if(!playlists.find((playlist) => playlist.id === request.params.id)){
-      response.status(HTTP_STATUS.BAD_REQUEST).send();
-      return;
+    const isDeleted = await playlistManager.deletePlaylist(request.params.id);
+    if(isDeleted){
+      response.status(HTTP_STATUS.SUCCESS).send();
+    }else {
+      response.status(HTTP_STATUS.NOT_FOUND).send();
     }
-    await playlistManager.deletePlaylist(request.params.id);
-    response.status(HTTP_STATUS.SUCCESS).send();
   }
   catch(error){
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);
