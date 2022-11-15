@@ -100,7 +100,7 @@ export default class HTTPManager {
   }
 
   /**
-   * TODO : implémenter la requête vers le serveur
+   * TODO DONE: implémenter la requête vers le serveur
    * Effectue une recherche de mot clé sur le serveur et retourne le résultat
    * Les paramètres sont envoyés dans la query de la requête HTTP sous le format suivant :
    * search_query=query&exact=exact
