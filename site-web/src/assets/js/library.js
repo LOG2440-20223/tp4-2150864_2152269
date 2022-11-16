@@ -92,19 +92,18 @@ export class Library {
   }
 
   /**
-   * TODO
+   * TODO DONE
    * Effectue une recherche parmis les playlists et chansons disponibles dans l'objet 'searchSources'
    * Met à jour la page avec les éléments qui correspondent à la recherche
    * @param {HTMLInputElement} searchInput élément <input> qui représente la barre de recherche
    * @param {boolean} exactMatch indique s'il faut tenir compte des minuscules et majuscules
    */
   async search (searchInput, exactMatch) {
-    // const searchString = searchInput.value;
-    // const playlists = await this.HTTPManager.getAllPlaylists();
-    // const songs = await this.HTTPManager.getAllSongs();
-    
-
-    
+  
+    const searchValue = searchInput.value;
+    this.HTTPManager.search(searchValue, exactMatch).then((result) => {
+      this.generateLists(result.playlists, result.songs);
+    });
     }
   }
 

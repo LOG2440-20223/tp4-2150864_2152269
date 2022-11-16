@@ -14,7 +14,7 @@ class SearchBarManager {
     const filteredSongs = songs.filter((song) => {
       return this.searchInFields([song.name, song.artist, song.genre], searchParameters, exact);
     });
-    return { "songs": filteredSongs, "playlists": filteredPlaylists };
+    return { "playlists": filteredPlaylists, "songs": filteredSongs };
   }
 
   includesSubstring (originalString, substring, exactMatch) {
