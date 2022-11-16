@@ -101,8 +101,8 @@ export class Library {
   async search (searchInput, exactMatch) {
   
     const searchValue = searchInput.value;
-    this.HTTPManager.search(searchValue, exactMatch).then((result) => {
-      this.generateLists(result.playlists, result.songs);
+    this.HTTPManager.search(searchValue, exactMatch).then((response) => {
+      this.generateLists(response.playlists, response.songs);
     });
     }
   }
