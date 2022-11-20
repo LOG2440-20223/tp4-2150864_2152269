@@ -151,14 +151,14 @@ export default class HTTPManager {
   }
 
   /**
-   * TODO : implémenter la requête vers le serveur
+   * TODO DONE: implémenter la requête vers le serveur
    * Récupère et retourne une playlist du serveur en fonction de son id
    * @param {number} id Id de la playlist
    * @returns {Promise} Playlist correspondant à l'id
    */
   async getPlaylistById (id) {
     try {
-      const playlist = {};
+      const playlist = HTTPInterface.GET(`${this.playlistBaseURL}/${id}`);
       return playlist;
     } catch (err) {
       window.alert(err);
@@ -166,39 +166,39 @@ export default class HTTPManager {
   }
 
   /**
-   * TODO : implémenter la requête vers le serveur
+   * TODO DONE : implémenter la requête vers le serveur
    * Ajoute une nouvelle playlist sur le serveur à travers une requête
    * @param {Object} playlist playlist à envoyer au serveur
    */
   async addNewPlaylist (playlist) {
     try {
-      await Promise.resolve("TODO");
+      await Promise.resolve(HTTPInterface.POST(`${this.playlistBaseURL}`, playlist));
     } catch (err) {
       window.alert("An error has occured while adding a new playlist", err);
     }
   }
 
   /**
-   * TODO : Implémenter la requête vers le serveur
+   * TODO DONE: Implémenter la requête vers le serveur
    * Modifie une playlist en envoyant un objet avec les nouvelles valeurs au serveur
    * @param {Object} playlist playlist à envoyer au serveur
    */
   async updatePlaylist (playlist) {
     try {
-      await Promise.resolve("TODO");
+      await Promise.resolve(HTTPInterface.PUT(`${this.playlistBaseURL}/${playlist.id}`, playlist));
     } catch (err) {
       window.alert("An error has occured while adding a new playlist", err);
     }
   }
 
   /**
-   * TODO : Implémenter la requête vers le serveur
+   * TODO DONE: Implémenter la requête vers le serveur
    * Supprime une playlist sur le serveur à travers une requête
    * @param {string} id identifiant de la playlist à supprimer
    */
   async deletePlaylist (id) {
     try {
-      await Promise.resolve("TODO");
+      await Promise.resolve(HTTPInterface.DELETE(`${this.playlistBaseURL}/${id}`));
     } catch (err) {
       window.alert("An error has occured while deleting a playlist", err);
     }
