@@ -1,1 +1,18 @@
-{"playlists":[{"id":"0","name":"Ma Premiere Playlist","description":"Playlist de base","thumbnail":"assets/img/default.png","songs":[{"id":0},{"id":1}]},{"name":"Party","description":"cool songs","thumbnail":"assets/img/8f491776-c15d-489e-8127-61990fc72ec6.png","songs":[{"id":1},{"id":3}],"id":"8f491776-c15d-489e-8127-61990fc72ec6"}]}
+{
+  "playlists": [
+    {
+      "id": "0",
+      "name": "Ma Premiere Playlist",
+      "description": "Playlist de base",
+      "thumbnail": "assets/img/default.png",
+      "songs": [
+        {
+          "id": 0
+        },
+        {
+          "id": 1
+        }
+      ]
+    }
+  ]
+}

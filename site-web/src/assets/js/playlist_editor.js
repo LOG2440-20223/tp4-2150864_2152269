@@ -146,6 +146,7 @@ export default class PlayListEditor {
     };
     // TODO DONE : Envoyer la bonne requête
     if (playlistId) {
+      newPlaylist.id = playlistId;
       await this.HTTPManager.updatePlaylist(newPlaylist);
     } else {
       await this.HTTPManager.addNewPlaylist(newPlaylist);

@@ -52,6 +52,7 @@ class PlaylistManager {
     const playlists = await this.getAllPlaylists();
     const playlistToUpdate = await this.getPlaylistById(playlist.id);
     const index = playlists.findIndex((playlist) => playlist.id === playlistToUpdate.id);
+    await this.savePlaylistThumbnail(playlist);
     playlists[index] = playlist;
     await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ playlists }));
   }
