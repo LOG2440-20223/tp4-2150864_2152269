@@ -112,7 +112,7 @@ export default class HTTPManager {
    */
   async search (query, exact) {
     const searchResults = HTTPInterface.GET(`${this.searchBaseURL}?search_query=${query}&exact=${exact}`);
-    
+
     return searchResults;
   }
 

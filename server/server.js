@@ -27,7 +27,6 @@ app.use("/api/playlists", playlistsRouter.router);
 app.use("/api/songs", songRouter.router);
 app.use("/api/search", searchRouter.router);
 
-
 const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 module.exports = server;

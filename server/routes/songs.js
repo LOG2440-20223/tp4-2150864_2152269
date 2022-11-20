@@ -26,17 +26,16 @@ router.get("/", async (request, response) => {
  * @name GET /songs/:id
  */
 router.get("/:id", async (request, response) => {
-  try{
+  try {
     const id = parseInt(request.params.id);
     const songs = await songsManager.getAllSongs();
-    if(!songs.find((song) => song.id === id)){
+    if (!songs.find((song) => song.id === id)) {
       response.status(HTTP_STATUS.NOT_FOUND).send();
       return;
     }
     const song = await songsManager.getSongById(id);
     response.status(HTTP_STATUS.SUCCESS).json(song);
-
-  }catch (error){
+  } catch (error) {
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);
   }
 });
@@ -72,12 +71,11 @@ router.get("/player/:id", async (request, response) => {
  * @name PATCH /songs/:id/like
  */
 router.patch("/:id/like", async (request, response) => {
-
-  try{
+  try {
     const id = parseInt(request.params.id);
     const isLiked = await songsManager.updateSongLike(id);
     response.status(HTTP_STATUS.SUCCESS).json({ liked: isLiked });
-  }catch(error){
+  } catch (error) {
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);
   }
 });

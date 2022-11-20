@@ -29,7 +29,6 @@ class PlaylistManager {
     return playlists.find((playlist) => playlist.id === id);
   }
 
-
   /**
    * Ajoute une playlist dans le fichier de toutes les playlists
    * @param {Object} playlist nouvelle playlist à ajouter
@@ -50,7 +49,7 @@ class PlaylistManager {
    * @param {Object} playlist nouveau contenu de la playlist
    */
   async updatePlaylist (playlist) {
-    let playlists = await this.getAllPlaylists();
+    const playlists = await this.getAllPlaylists();
     const playlistToUpdate = await this.getPlaylistById(playlist.id);
     const index = playlists.findIndex((playlist) => playlist.id === playlistToUpdate.id);
     playlists[index] = playlist;

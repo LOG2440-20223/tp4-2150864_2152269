@@ -39,7 +39,7 @@ class SongsManager {
     const index = songs.findIndex((song) => song.id === songToUpdate.id);
     songs[index].liked = !songs[index].liked;
     await this.fileSystemManager.writeToJsonFile(this.JSON_PATH, JSON.stringify({ songs }));
-    
+
     return songs[index].liked;
   }
 }

@@ -113,7 +113,7 @@ export default class PlayListEditor {
   }
 
   /**
-   * TODO : implémenter l'envoi des requêtes en fonction de si on veut créer ou modifier une playlist existante
+   * TODO DONE : implémenter l'envoi des requêtes en fonction de si on veut créer ou modifier une playlist existante
    * Créé une playlist sur le serveur à travers une requête
    * ou envoie une requête de modification si playlistId n'est pas 'undefined'
    * @param {HTMLFormELement} form formulaire de la playlist
@@ -144,20 +144,23 @@ export default class PlayListEditor {
         }
       }),
     };
-    // TODO : Envoyer la bonne requête
+    // TODO DONE : Envoyer la bonne requête
     if (playlistId) {
-      // TODO : Modifer la playlist
+      await this.HTTPManager.updatePlaylist(newPlaylist);
     } else {
-      // TODO : Créer la playlist
+      await this.HTTPManager.addNewPlaylist(newPlaylist);
     }
   }
 
   /**
-   * TODO : Supprimer une playlist à travers une requête HTTP
+   * TODO DONE: Supprimer une playlist à travers une requête HTTP
    * Suite à la supression, l'utilisateur est redirigé vers la page 'index.html'
    * @param {string} id identifiant de la playlist à supprimer
    */
-  async deletePlaylist (id) { }
+  async deletePlaylist (id) {
+    await this.HTTPManager.deletePlaylist(id);
+    window.location = `http://localhost:5000/index.html`;
+  }
 
   async getImageInput (input, reader = new FileReader()) {
     if (input && input.files && input.files[0]) {

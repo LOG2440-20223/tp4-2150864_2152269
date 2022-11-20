@@ -25,9 +25,9 @@ router.get("/", async (request, response) => {
  * @name GET /playlists/:id
  */
 router.get("/:id", async (request, response) => {
-  try{
+  try {
     const playlists = await playlistManager.getAllPlaylists();
-    if(!playlists.find((playlist) => playlist.id === request.params.id)){
+    if (!playlists.find((playlist) => playlist.id === request.params.id)) {
       response.status(HTTP_STATUS.NOT_FOUND).send();
       return;
     }
@@ -63,14 +63,14 @@ router.post("/", async (request, response) => {
  * @name PUT /playlists/:id
  */
 router.put("/:id", async (request, response) => {
-  try{
+  try {
     if (!Object.keys(request.body).length) {
       response.status(HTTP_STATUS.BAD_REQUEST).send();
       return;
     }
     await playlistManager.updatePlaylist(request.body);
-    response.status(HTTP_STATUS.SUCCESS).json({"id" : request.params.id});
-  }catch(error){
+    response.status(HTTP_STATUS.SUCCESS).json({ "id": request.params.id });
+  } catch (error) {
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);
   }
 });
@@ -82,18 +82,16 @@ router.put("/:id", async (request, response) => {
  * @name DELETE /playlists/:id
  */
 router.delete("/:id", async (request, response) => {
-  try{
+  try {
     const isDeleted = await playlistManager.deletePlaylist(request.params.id);
-    if(isDeleted){
+    if (isDeleted) {
       response.status(HTTP_STATUS.SUCCESS).send();
-    }else {
+    } else {
       response.status(HTTP_STATUS.NOT_FOUND).send();
     }
-  }
-  catch(error){
+  } catch (error) {
     response.status(HTTP_STATUS.SERVER_ERROR).json(error);
   }
 });
-
 
 module.exports = { router, playlistManager };
