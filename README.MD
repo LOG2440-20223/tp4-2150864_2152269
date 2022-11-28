@@ -33,12 +33,19 @@ Les fichiers des chansons initiales sont disponibles dans le répertoire `assets
 
 | **Exigences**                                     | **Note** | **Points** |
 | ------------------------------------------------- | :------: | :--------: |
-| Implémentation du Routeur `search_bar.js`         |    0     |     1      |
-| Implémentation du Routeur `palylists.js`          |    0     |     3      |
-| Implémentation du Routeur `songs.js`              |    0     |     2      |
-| Implémentation `PlaylistsManager`                 |    0     |     3      |
-| Implémentation de `SongsManager`                  |    0     |     2      |
-| Implémentation de `HTTPManager` et son utilisation|    0     |     5      |
-| Structure du code                                 |    0     |     2      |
-| Qualité et clarté du code                         |    0     |     2      |
-| **Total**                                         | **0**    |   **20**   |
+| Implémentation du Routeur `search_bar.js`         |    1     |     1      |
+| Implémentation du Routeur `palylists.js`          |    3     |     3      |
+| Implémentation du Routeur `songs.js`              |    2     |     2      |
+| Implémentation `PlaylistsManager`                 |    3     |     3      |
+| Implémentation de `SongsManager`                  |    2     |     2      |
+| Implémentation de `HTTPManager` et son utilisation|    4.5     |     5      |
+| Structure du code                                 |    2     |     2      |
+| Qualité et clarté du code                         |    2     |     2      |
+| **Total**                                         | **20**    |   **20**   |
+
+# Commentaires :
+
+## Client :
+- Manque les await pour les foncitons async (-0.5pts)
+
+- Bon travail :)
